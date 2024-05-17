@@ -35,8 +35,8 @@ export default function Mycars() {
          
           <div className=" mt-4 " >
             {cars.length > 0 && cars.map((car,index) =>(
-                <Link to={'/account/cars/'+ car._id} key={index} className=" bg-gray-100 p-4 rounded-2xl flex gap-4  cursor-pointer">
-                    <div className=" w-32 h-32 bg-gray-300 grow shrink-0 flex ">
+                <Link to={'/account/cars/'+ car._id} key={index} className=" bg-gray-100 p-4 rounded-2xl flex gap-4 font-semibold  cursor-pointer">
+                    <div className=" w-64 h-40 bg-gray-300  shrink-0 flex ">
                         {car.photos.length > 0 && (
                             <img src={"http://localhost:4000/uploads/"+car.photos[0]} className=" object-cover"/>
                         )}
