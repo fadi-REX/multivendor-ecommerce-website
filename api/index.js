@@ -218,6 +218,11 @@ app.get('/uniquecar/:id', async (req,res) => {
 
 
 
+app.get('/allcars', async (req,res)=> {
+  res.json(await car.find())
+})
+
+
 
 
 
