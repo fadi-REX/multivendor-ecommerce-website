@@ -33,17 +33,17 @@ export default function Mycars() {
             </Link>
          </div>
          
-          <div className=" mt-4 " >
+          <div className=" mt-4 mx-72   " >
             {cars.length > 0 && cars.map((car,index) =>(
-                <Link to={'/account/cars/'+ car._id} key={index} className=" bg-gray-100 p-4 rounded-2xl flex gap-4 font-semibold  cursor-pointer">
-                    <div className=" w-64 h-40 bg-gray-300  shrink-0 flex ">
+                <Link to={'/account/cars/'+ car._id} key={index} className=" bg-gray-100 my-4 p-4 rounded-2xl flex gap-4 font-semibold  cursor-pointer">
+                    <div className="flex  w-52 h-52 bg-gray-300 shrink-1  ">
                         {car.photos.length > 0 && (
-                            <img src={"http://localhost:4000/uploads/"+car.photos[0]} className=" object-cover"/>
+                            <img src={"http://localhost:4000/uploads/"+car.photos[0]} className=" object-cover aspect-square  "/>
                         )}
                     </div>
-                    <div className=" grow-0 shrink ">
+                    <div className=" grow-1 shrink ">
                     <h2 className="text-xl ">{car.title}</h2>
-                    <p className="text-sm mt-2 ">{car.description}</p>
+                    <p className="text-sm mt-2 max-w-96  ">{car.description}</p>
                     </div>
                     
                 </Link>

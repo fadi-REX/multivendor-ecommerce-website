@@ -12,6 +12,7 @@ import AccountPage from './pages/acountPage'
 import ProductsPage from './pages/productsPage'
 import Mycars from './pages/mycarsPage'
 import Carsformpage from './pages/carsformPage'
+import SingleCarPage from './pages/singleCarPage'
 
 
 
@@ -33,6 +34,7 @@ function App() {
         <Route path='/account/cars' element = {<Mycars/>} />
         <Route path='/account/cars/new' element = {<Carsformpage/>} />
         <Route path='/account/cars/:id' element = {<Carsformpage/>} />
+        <Route path='/car/:id' element = {<SingleCarPage/>} />
         
       </Route>
      </Routes>
