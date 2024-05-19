@@ -26,7 +26,7 @@ app.use(cors({
 }));
 
 // database connection 
-mongoose.connect("mongodb+srv://fadi:fOiBkbE32ovp5ygD@cluster0.ypdzffe.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+mongoose.connect(process.env.mongo_url);
 
 
 
