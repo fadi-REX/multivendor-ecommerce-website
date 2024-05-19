@@ -30,7 +30,7 @@ mongoose.connect(process.env.mongo_url);
 
 
 
-app.get('/test',(req,res) =>{
+app.get('/',(req,res) =>{
   res.send('test ok')
 });
 
