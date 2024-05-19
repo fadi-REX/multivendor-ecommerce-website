@@ -120,6 +120,14 @@ export default function Carsformpage(){
        setAddedPhotos(newaddedphotos)
    }
 
+
+
+   async function  deleteFunction() {
+    await axios.post('/deletecar/'+id)
+    setRedirect(true)
+   
+   }
+
    
    if(redirect){
     return <Navigate to={'/account/cars'} />
@@ -228,6 +236,10 @@ export default function Carsformpage(){
 
 
               </form>
+
+              {id && (
+                <button onClick={() => deleteFunction()} className=" bg-red-400 w-full p-2 text-white rounded-2xl ">Delete</button>
+              )}
             </div>
     )
 }

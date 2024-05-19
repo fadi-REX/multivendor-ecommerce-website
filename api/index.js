@@ -225,4 +225,11 @@ app.get('/allcars', async (req,res)=> {
 
 
 
+app.post('/deletecar/:id', async (req,res) => {
+   const {id} = req.params;
+   res.json(await car.findByIdAndDelete(id));
+})
+
+
+
 
