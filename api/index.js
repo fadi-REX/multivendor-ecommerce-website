@@ -83,7 +83,7 @@ app.listen(4000, () =>{
 
 
 // register a user using the models user.js
-app.post('/register',async(req,res)=>{
+app.post('/api/register',async(req,res)=>{
 mongoose.connect(process.env.mongo_url);
 const {name,email,password,idcard,number} = req.body;
  try {
@@ -103,7 +103,7 @@ const {name,email,password,idcard,number} = req.body;
 
 
 // login functionality using express app
-app.post('/login',async(req,res) => {
+app.post('/api/login',async(req,res) => {
   mongoose.connect(process.env.mongo_url);
   const {email,password} = req.body;
   const userdoc = await User.findOne({email});
@@ -129,7 +129,7 @@ app.post('/login',async(req,res) => {
 
 
 //user profile 
-app.get('/profile',(req,res)=> {
+app.get('/api/profile',(req,res)=> {
   mongoose.connect(process.env.mongo_url);
   const {token} = req.cookies;
   if(token) {
@@ -149,7 +149,7 @@ app.get('/profile',(req,res)=> {
 
 // logout user
 
-app.post('/logout',(req,res)=>{
+app.post('/api/logout',(req,res)=>{
   res.cookie('token','').json(true)
 })
 
@@ -160,7 +160,7 @@ app.post('/logout',(req,res)=>{
 
 // upload image from pc
 const photoMiddleware = multer({dest:'/tmp'});
-app.post('/upload', photoMiddleware.array('photos',100) ,async (req,res) => {
+app.post('/api/upload', photoMiddleware.array('photos',100) ,async (req,res) => {
   const uploadedfiles = [];
   for(let i = 0 ; i < req.files.length;i++ )
     {
@@ -174,7 +174,7 @@ app.post('/upload', photoMiddleware.array('photos',100) ,async (req,res) => {
 
 
 // add a car
-app.post('/addcar',(req,res) =>{
+app.post('/api/addcar',(req,res) =>{
  mongoose.connect(process.env.mongo_url);
  const {token} = req.cookies;
  const  {title,location, addedPhotos,description,types,contactInfo,price} = req.body;
@@ -196,7 +196,7 @@ app.post('/addcar',(req,res) =>{
 })
 
 // updating the car info
-app.put('/addcar', async (req,res) => {
+app.put('/api/addcar', async (req,res) => {
  mongoose.connect(process.env.mongo_url);
  const {token} = req.cookies;
  const  {id,title,location, addedPhotos,description,types,contactInfo,price} = req.body;
@@ -232,7 +232,7 @@ app.put('/addcar', async (req,res) => {
 
 
 
-app.get('/mycars',async(req,res) => {
+app.get('/api/mycars',async(req,res) => {
    mongoose.connect(process.env.mongo_url);
    const {token} = req.cookies;
    jwt.verify(token,jwtSecret,{},async(err,userData) =>{
@@ -245,7 +245,7 @@ app.get('/mycars',async(req,res) => {
 
 
 
-app.get('/uniquecar/:id', async (req,res) => {
+app.get('/api/uniquecar/:id', async (req,res) => {
    mongoose.connect(process.env.mongo_url);
    const {id} = req.params;
    res.json(await car.findById(id));
@@ -253,7 +253,7 @@ app.get('/uniquecar/:id', async (req,res) => {
 
 
 
-app.get('/allcars', async (req,res)=> {
+app.get('/api/allcars', async (req,res)=> {
   mongoose.connect(process.env.mongo_url);
   res.json(await car.find())
 })
@@ -261,7 +261,7 @@ app.get('/allcars', async (req,res)=> {
 
 
 
-app.post('/deletecar/:id', async (req,res) => {
+app.post('/api/deletecar/:id', async (req,res) => {
   mongoose.connect(process.env.mongo_url);
    const {id} = req.params;
    res.json(await car.findByIdAndDelete(id));
