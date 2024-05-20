@@ -2,6 +2,7 @@ import { Link  } from "react-router-dom";
 import AccountNavigation from "../components/acccountNavigation";
 import { useEffect, useState } from "react";
 import axios from 'axios'
+import Image from "../components/image"
 
 
 
@@ -38,7 +39,7 @@ export default function Mycars() {
                 <Link to={'/account/cars/'+ car._id} key={index} className=" bg-gray-100 my-4 p-4 rounded-2xl flex gap-4 font-semibold  cursor-pointer">
                     <div className="flex  w-52 h-52 bg-gray-300 shrink-1  ">
                         {car.photos.length > 0 && (
-                            <img src={"http://localhost:4000/uploads/"+car.photos[0]} className=" object-cover aspect-square  "/>
+                            <Image src={car.photos[0]} className=" object-cover aspect-square  "/>
                         )}
                     </div>
                     <div className=" grow-1 shrink ">

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Image from "../components/image"
 
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
@@ -42,7 +43,7 @@ export default function SingleCarPage(){
               </div>
               {car?.photos?.length > 0 && car.photos.map((photo,index) =>(
                 <div key={index}>
-                    <img src={'http://localhost:4000/uploads/'+ photo } alt="" />
+                    <Image src={photo } alt="" />
                 </div>
               ))}
 
@@ -63,7 +64,7 @@ export default function SingleCarPage(){
             <div >
                 {car.photos?.[0] && (
                     <div>
-                          <img onClick={()=> setShowallphotos(true)} className='aspect-square cursor-pointer  object-cover ' src={"http://localhost:4000/uploads/" + car.photos[0]} alt="" />
+                          <Image onClick={()=> setShowallphotos(true)} className='aspect-square cursor-pointer  object-cover ' src={ car.photos[0]} alt="" />
                     </div>
                    
                 )}
@@ -72,11 +73,11 @@ export default function SingleCarPage(){
 
             <div className='grid '>
                  {car.photos?.[1] && (
-                    <img onClick={()=> setShowallphotos(true)} className='aspect-square cursor-pointer  object-cover  ' src={"http://localhost:4000/uploads/" + car.photos[1]} alt="" />
+                    <Image onClick={()=> setShowallphotos(true)} className='aspect-square cursor-pointer  object-cover  ' src={car.photos[1]} alt="" />
                 )}
                 <div>
                  {car.photos?.[2] && (
-                    <img onClick={()=> setShowallphotos(true)} className='aspect-square cursor-pointer  object-cover relative top-2 ' src={"http://localhost:4000/uploads/" + car.photos[2]} alt="" />
+                    <Image onClick={()=> setShowallphotos(true)} className='aspect-square cursor-pointer  object-cover relative top-2 ' src={car.photos[2]} alt="" />
                 )}
                 </div>
                  

@@ -2,6 +2,7 @@ import axios from "axios"
 
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import Image from "../components/image"
 
 export default function ProductsPage(){
     
@@ -21,7 +22,7 @@ export default function ProductsPage(){
             <Link key={index} to={'/car/'+ car._id}>
                 <div className=" bg-gray-500 mb-2 rounded-2xl flex">
                 {car.photos?.[0] && (
-                    <img className="rounded-2xl object-cover aspect-square " src={'http://localhost:4000/uploads/'+ car.photos?.[0]} />
+                    <Image className="rounded-2xl object-cover aspect-square " src={car.photos?.[0]} />
                 )}
                 </div>
                  
