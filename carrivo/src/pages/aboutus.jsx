@@ -6,7 +6,7 @@ export default function AboutUs() {
         <div className=' mt-4 font'>
             <div className='text-center '>
              <h1 className=' text-4xl font-bold my-2'> About Us </h1>
-             <p className=' mt-4'>On this website, users can register, login, and interact with each other by buying or selling their cars.</p>
+             <p className=' mt-4'>A consumer-to-consumer cars website where individuals can buy and sell vehicles directly, providing a platform for peer-to-peer transactions without the need for dealerships.</p>
             </div>
 
             <div className=' my-20'>

@@ -30,7 +30,7 @@ mongoose.connect(process.env.mongo_url);
 
 
 
-app.get('/',(req,res) =>{
+app.get('/test',(req,res) =>{
   res.send('test ok')
 });
 
@@ -111,22 +111,10 @@ app.post('/logout',(req,res)=>{
 
 
 
-// upload image by link to the server 
-app.post('/uploadBylink',async(req,res)=>{
-  const {link} = req.body
-  const newName =  Date.now() + '.jpg'
-  await imageDownloader.image({
-    url  : link,
-    dest : __dirname + '/uploads/' + newName
-  });
-
-  res.json( __dirname + '/uploads/' + newName)
-
-})
 
 // upload image from pc
-const photosMiddleWare = multer ({dest:'uploads'});
-app.post('/upload',photosMiddleWare.array('photos',100),(req,res) => {
+
+app.post('/upload',(req,res) => {
   const uploadedfiles = [];
   for(let i = 0 ; i < req.files.length;i++ )
     {
