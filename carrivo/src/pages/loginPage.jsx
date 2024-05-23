@@ -9,7 +9,7 @@ export default function LoginPage() {
     const [redirect, setRedirect] = useState(false);
     const [logfalse, setLogfalse] = useState(false);
 
-    const {setUser}= useContext(Usercontext)
+    const {user,setUser}= useContext(Usercontext)
 
     async function hundelLogin(ev){
       ev.preventDefault();
@@ -25,6 +25,12 @@ export default function LoginPage() {
     if (redirect) {
         return (<Navigate to= {'/products'} />)
     }
+
+
+    if(user){
+        return <Navigate to={'/'} />
+    }
+
 
     return (
         <div className="mt-4 grow flex items-center justify-around">

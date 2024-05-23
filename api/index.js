@@ -4,6 +4,7 @@ const { default: mongoose } = require('mongoose');
 
 const car = require('./models/car.js')
 const User = require('./models/user.js')
+const Admin = require('./models/admin.js')
 const cookieParser = require('cookie-parser')
 const jwt = require('jsonwebtoken');   //  for the cookies
 const bcrypt = require('bcryptjs')  // password encyption

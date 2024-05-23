@@ -1,6 +1,8 @@
 import axios from "axios";
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { Link } from "react-router-dom"
+import { Navigate } from "react-router-dom";
+import { Usercontext } from "../usercontext";
 
 
 
@@ -11,6 +13,10 @@ export default function RegisterPage() {
     const [number, setNumber] = useState('');
     const [password, setPassword] = useState('');
     const [registerfalse, setRegisterfalse] = useState(false);
+
+
+    const {user}= useContext(Usercontext)
+
     async function registerUser(ev){
         ev.preventDefault();
         try {
@@ -29,12 +35,14 @@ export default function RegisterPage() {
          
         }
 
-
-
-        
-        
-
     }
+
+    if(user){
+        return <Navigate to={'/'} />
+    }
+        
+
+
     
     return (
         <div className="mt-4 grow flex items-center justify-around">

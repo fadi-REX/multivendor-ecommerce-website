@@ -1,5 +1,5 @@
 import axios from "axios"
-
+import image1 from '../assets/image2.png'
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import Image from "../components/image"
@@ -7,17 +7,22 @@ import Image from "../components/image"
 export default function ProductsPage(){
     
     const [cars,setcars] = useState([])
+    
 
     useEffect(()=>{
         axios.get('/allcars').then(response =>{
            setcars(response.data ) 
+           
         })
     },[])
 
 
+    
+
     return(
         
-     <div className=" mt-8 grid gap-x-6 gap-y-12 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-10">
+     
+       <div className=" mt-8 grid gap-x-6 gap-y-12 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-10 mx-24">
         {cars.length > 0 && cars.map((car,index) =>(
             <Link key={index} to={'/car/'+ car._id}>
                 <div className=" bg-gray-500 mb-2 rounded-2xl flex">
@@ -37,5 +42,7 @@ export default function ProductsPage(){
             </Link>
         ))}
      </div>
+    
+     
     )
 }
