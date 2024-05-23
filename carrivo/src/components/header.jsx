@@ -18,8 +18,8 @@ import { useContext } from "react"
       
 
         <div className="flex justify-between gap-8">  
-        <Link to={'/adminlogin'} className="flex mt-2 font-bold text-primary">Admin</Link>
         <Link to={'/aboutus'} className="flex mt-2 font-bold text-primary">About Us</Link>
+        <Link to={'/adminlogin'} className="flex mt-2 font-bold text-primary">Admin</Link>
         <Link to={'/products'} className="flex mt-2 font-bold text-primary">Products</Link>
         <Link to={user?'/account/cars/new':'/login' } className="flex mt-2 font-bold text-primary ">Sell your Car</Link>
         <Link to={user?'/account':'/login'} className='flex gap-2 border border-gray-300 rounded-full py-2 px-4 '>
