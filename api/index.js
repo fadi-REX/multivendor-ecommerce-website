@@ -4,7 +4,7 @@ const { default: mongoose } = require('mongoose');
 
 const car = require('./models/car.js')
 const User = require('./models/user.js')
-const Admin = require('./models/admin.js')
+const admin = require('./models/admin.js')
 const cookieParser = require('cookie-parser')
 const jwt = require('jsonwebtoken');   //  for the cookies
 const bcrypt = require('bcryptjs')  // password encyption
@@ -102,8 +102,25 @@ const {name,email,password,idcard,number} = req.body;
  
 });
 
+// register an Admin using the models user.js
+app.post('/api/adminregister',async(req,res)=>{
+mongoose.connect(process.env.mongo_url);
+const {name,email,password} = req.body;
+ try {
+  const admindocument = await admin.create({
+      name,
+      email,
+      password : bcrypt.hashSync(password,secret),
+     });
+     res.json(admindocument);
+ } catch (error) {
+   res.status(422).json(error);
+ }
+ 
+});
 
-// login functionality using express app
+
+// login user functionality using express app
 app.post('/api/login',async(req,res) => {
   mongoose.connect(process.env.mongo_url);
   const {email,password} = req.body;
@@ -128,6 +145,34 @@ app.post('/api/login',async(req,res) => {
 })
 
 
+// login Admin functionality using express app
+app.post('/api/adminlogin',async(req,res) => {
+  mongoose.connect(process.env.mongo_url);
+  const {email,password} = req.body;
+  const admindoc = await admin.findOne({email});
+  if (admindoc) {
+    const passok = bcrypt.compareSync(password, admindoc.password)
+    if (passok){
+      jwt.sign({email:admindoc.email, id:admindoc._id, name:admindoc.name}, jwtSecret,{},(err,token) =>{
+        if(err) throw err;
+        res.cookie('admintoken',token).json(admindoc)
+      })
+     
+    }
+    else {
+       
+      res.status(422).json('pass not ok')
+    }
+  }
+  else {
+     res.status(422).json('not found') 
+    }
+})
+
+
+
+
+
 
 //user profile 
 app.get('/api/profile',(req,res)=> {
@@ -148,11 +193,38 @@ app.get('/api/profile',(req,res)=> {
 
 
 
+//admin profile 
+app.get('/api/adminprofile',(req,res)=> {
+  mongoose.connect(process.env.mongo_url);
+  const {admintoken} = req.cookies;
+  if(admintoken) {
+ jwt.verify(admintoken,jwtSecret,{},(err,adminData) =>{
+   
+   res.json(adminData);
+ });
+  }
+  else {
+    res.json(null);
+  }
+
+  
+})
+
+
+
 // logout user
 
 app.post('/api/logout',(req,res)=>{
   res.cookie('token','').json(true)
 })
+
+
+// logout admin
+
+app.post('/api/adminlogout',(req,res)=>{
+  res.cookie('admintoken','').json(true)
+})
+
 
 
 
