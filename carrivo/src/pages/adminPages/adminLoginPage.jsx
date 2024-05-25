@@ -1,6 +1,6 @@
 
 import { useContext, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import axios from "axios";
 import { Admincontext } from "../../admincontext";
 export default function AdminLoginPage() {
@@ -36,7 +36,9 @@ export default function AdminLoginPage() {
     <div className=" grow flex items-center justify-around mt-52">
       <div className="">
         <h1 className="text-4xl text-center mb-4 font-bold">Login</h1>
-        <div className="flex pb-2 justify-center font-semibold">Administrative space</div>
+        <div className="flex pb-2 justify-center font-semibold">
+          Administrative space
+        </div>
         <form className="max-w-md mx-auto" onSubmit={hundelLogin}>
           <input
             type="email"
@@ -51,6 +53,13 @@ export default function AdminLoginPage() {
             onChange={(ev) => setPassword(ev.target.value)}
           />
           <button className="primary">Login</button>
+          
+          <div className="flex py-2 justify-between ">
+            dont have an Admin access ?
+            <Link to={"/"} className="underline font-semibold">
+              Go back
+            </Link>
+          </div>
 
           {logfalse && (
             <div className="flex justify-center mt-4 font-semibold text-red-400">

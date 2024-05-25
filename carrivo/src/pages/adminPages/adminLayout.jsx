@@ -34,7 +34,7 @@ import axios from "axios";
 
 
 
-const color = grey[400];
+const color = grey[300];
 const drawerWidth = 240;
 
 export default function AdminLayout() {
@@ -75,7 +75,7 @@ export default function AdminLayout() {
 
   const Array2 = [
     { text: "Profile", icon: <PersonOutlineOutlinedIcon />, path: "/admin/profile" },
-    { text: "Log out", icon: <LoginOutlinedIcon />, path: "/adminlogin" },
+    { text: "Log out", icon: <LoginOutlinedIcon />, path: "/" },
     
   ];
 
@@ -91,7 +91,7 @@ export default function AdminLayout() {
       >
         <Toolbar>
           <Typography variant="h6" noWrap component="div">
-            {!!admin && <div>{admin.name} </div>}
+            {!!admin && <div>Admin Name : {admin.name} </div>}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -120,6 +120,7 @@ export default function AdminLayout() {
             variant="body1"
             sx={{ fontSize: 19 }}
             className=" text-blue-500"
+            fontWeight={"bold"}
           >
             Admin Panel
           </Typography>
@@ -134,11 +135,18 @@ export default function AdminLayout() {
                     navigate(item.path);
                   }}
                   sx={{
-                    bgcolor: location.pathname === item.path ? color : null
+                    bgcolor: location.pathname === item.path ? color : null,
                   }}
                 >
                   <ListItemIcon>{item.icon}</ListItemIcon>
-                 <ListItemText sx={{fontFamily : "serif"}}>{item.text}</ListItemText>
+                  <ListItemText
+                    primaryTypographyProps={{
+                      fontFamily: "cursive",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {item.text}
+                  </ListItemText>
                 </ListItemButton>
               </ListItem>
             ))}
@@ -151,14 +159,23 @@ export default function AdminLayout() {
               <ListItem key={item.path} disablePadding>
                 <ListItemButton
                   onClick={() => {
-                    if (item.path === "/adminlogin") {
+                    if (item.path === "/") {
                       hundleLogout();
                     }
                     navigate(item.path);
                   }}
+                  sx={{
+                    bgcolor: location.pathname === item.path ? color : null,
+                  }}
                 >
                   <ListItemIcon>{item.icon}</ListItemIcon>
-                  <ListItemText primary={item.text} />
+                  <ListItemText
+                    primary={item.text}
+                    primaryTypographyProps={{
+                      fontFamily: "cursive",
+                      fontWeight: "bold",
+                    }}
+                  />
                 </ListItemButton>
               </ListItem>
             ))}
