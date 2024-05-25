@@ -14,7 +14,7 @@ export default function SingleCarPage(){
 
     useEffect(()=>{
         if (!id) {return}
-        axios.get(/uniquecar/+id).then( response => {
+         axios.get(/uniquecar/+id).then( response => {
           setCar(response.data)
         })
 
