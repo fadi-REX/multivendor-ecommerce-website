@@ -8,7 +8,6 @@ export default function AdminProfilePage() {
     <div className=" ">
       <div className=" my-2">Admin Name : {admin.name}</div>
       <div className=" my-2">Admin Email : {admin.email}</div>
-      <div className=" my-2">Admin ID : {admin.id}</div>
     </div>
   );
 }
