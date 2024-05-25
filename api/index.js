@@ -342,4 +342,24 @@ app.post('/api/deletecar/:id', async (req,res) => {
 
 
 
+// get all admins
+app.get('/api/alladmins', async (req,res)=> {
+  mongoose.connect(process.env.mongo_url);
+  res.json(await admin.find())
+})
+
+
+// get all users
+app.get('/api/allusers', async (req,res)=> {
+  mongoose.connect(process.env.mongo_url);
+  res.json(await User.find())
+})
+
+
+app.post('/api/deleteuser/:id', async (req,res) => {
+  mongoose.connect(process.env.mongo_url);
+   const {id} = req.params;
+   res.json(await User.findByIdAndDelete(id));
+})
+
 
