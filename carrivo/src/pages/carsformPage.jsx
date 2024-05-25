@@ -15,6 +15,12 @@ export default function Carsformpage(){
    const [contactInfo,setContactInfo] = useState('');
    const [price,setPrice] = useState('');
    const [redirect,setRedirect] = useState(false);
+   const [carModel,setCarModel] = useState('')
+   const [carMileage, setcarMileage] = useState("");
+   const [fuelType, setfuelType] = useState("");
+
+   
+
 
    useEffect(()=>{
     if(!id) {
@@ -29,11 +35,15 @@ export default function Carsformpage(){
         setTypes(data.carType)
         setContactInfo(data.contactInfo)
         setPrice(data.price)
+        setfuelType(data.fuelType);
+        setCarModel(data.car_model);
+        setcarMileage(data.mileage);
 
         
     });
    }, [id]);
 
+   
 
    function inputHeader(text){
     return(
@@ -91,14 +101,32 @@ export default function Carsformpage(){
      ev.preventDefault();
      if(id){
         // update
-        const cardata = {id,title,location, addedPhotos,description,types,contactInfo,price}
+        
+        const cardata = {id,title,location, addedPhotos,description,types,contactInfo,price,carModel,carMileage,fuelType}
       await axios.put('/addcar',cardata)
 
       setRedirect(true);
      }
      else {
-        //new place
-      const cardata = {title,location, addedPhotos,description,types,contactInfo,price}
+        //new car
+        const verified = false;
+        const d = new Date();
+        const month = d.getMonth() + 1;
+        const listingdate = d.getDate() + "/" + month + "/" + d.getFullYear();
+      const cardata = {
+        title,
+        location,
+        addedPhotos,
+        description,
+        types,
+        contactInfo,
+        price,
+        carModel,
+        carMileage,
+        fuelType,
+        verified,
+        listingdate
+      };
       await axios.post('/addcar',cardata)
 
       setRedirect(true);
@@ -155,6 +183,24 @@ export default function Carsformpage(){
             value={location}
             onChange={(ev) => setLocation(ev.target.value)}
           />
+          {preInput("Car Model", "put the model of your car")}
+          <input
+            type="text"
+            placeholder="Car Model"
+            value={carModel}
+            onChange={(ev) => setCarModel(ev.target.value)}
+          />
+          {preInput(
+            "Car Mileage",
+            "put the Mileage of your car in km (if new car put 0)"
+          )}
+          <input
+            type="text"
+            placeholder="Car Mileage"
+            value={carMileage}
+            onChange={(ev) => setcarMileage(ev.target.value)}
+          />
+
           {preInput("Photos", "The more the better")}
 
           <div className="grid grid-cols-3 gap-2 md:grid-cols-4 lg:grid-cols-6 mt-2">
@@ -253,6 +299,56 @@ export default function Carsformpage(){
             value={description}
             onChange={(ev) => setDescription(ev.target.value)}
           />
+          {preInput(
+            "Car Fuel Type",
+            "select select the specific fuel of your car"
+          )}
+
+          <div className="grid mt-2 gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
+            <label className=" border p-4 flex rounded-2xl cursor-pointer justify-center">
+              <input
+                type="radio"
+                name="fuelType"
+                value="Electric"
+                onChange={(ev) => setfuelType(ev.target.value)}
+                checked={fuelType == "Electric" && "checked"}
+              />
+              <span>Electric</span>
+            </label>
+
+            <label className=" border p-4 flex rounded-2xl cursor-pointer justify-center gap-2">
+              <input
+                type="radio"
+                name="fuelType"
+                value="Petrol"
+                onChange={(ev) => setfuelType(ev.target.value)}
+                checked={fuelType == "Petrol" && "checked"}
+              />
+              <span>Petrol</span>
+            </label>
+
+            <label className=" border p-4 flex rounded-2xl cursor-pointer justify-center gap-2">
+              <input
+                type="radio"
+                name="fuelType"
+                value="Diesel"
+                onChange={(ev) => setfuelType(ev.target.value)}
+                checked={fuelType == "Diesel" && "checked"}
+              />
+              <span>Diesel</span>
+            </label>
+
+            <label className=" border p-4 flex rounded-2xl cursor-pointer justify-center gap-2">
+              <input
+                type="radio"
+                name="fuelType"
+                value="Gasoline"
+                onChange={(ev) => setfuelType(ev.target.value)}
+                checked={fuelType == "Gasoline" && "checked"}
+              />
+              <span>Gasoline</span>
+            </label>
+          </div>
 
           {preInput("Car Type", "select all the types that match your car")}
 

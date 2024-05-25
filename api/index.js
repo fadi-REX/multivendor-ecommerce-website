@@ -250,7 +250,7 @@ app.post('/api/upload', photoMiddleware.array('photos',100) ,async (req,res) => 
 app.post('/api/addcar',(req,res) =>{
  mongoose.connect(process.env.mongo_url);
  const {token} = req.cookies;
- const  {title,location, addedPhotos,description,types,contactInfo,price} = req.body;
+ const  {title,location, addedPhotos,description,types,contactInfo,price,carModel,carMileage,fuelType,verified,listingdate} = req.body;
  jwt.verify(token,jwtSecret,{},async(err,userData) =>{
    const carDoc = await car.create({
     owner : userData.id,
@@ -261,7 +261,12 @@ app.post('/api/addcar',(req,res) =>{
     contactInfo : contactInfo,
     carType : types,
     price : price,
-
+    car_model: carModel,
+    mileage : carMileage,
+    fuelType : fuelType,
+    listingDate : listingdate ,
+    verified  : verified ,
+ 
   })
   res.json(carDoc)
  });
@@ -272,19 +277,22 @@ app.post('/api/addcar',(req,res) =>{
 app.put('/api/addcar', async (req,res) => {
  mongoose.connect(process.env.mongo_url);
  const {token} = req.cookies;
- const  {id,title,location, addedPhotos,description,types,contactInfo,price} = req.body;
+ const  {id,title,location, addedPhotos,description,types,contactInfo,price,carModel,carMileage,fuelType} = req.body;
  
  jwt.verify(token,jwtSecret,{},async(err,userData) =>{
     const carDoc = await car.findById(id)
     if(userData.id === carDoc.owner.toString()) {
       carDoc.set({
-        title: title,
-        location : location,
-        photos: addedPhotos,
-        description: description,
-        contactInfo : contactInfo,
-        carType : types,
-        price : price,
+         title: title,
+         location : location,
+         photos: addedPhotos,
+         description: description,
+         contactInfo : contactInfo,
+         carType : types,
+         price : price,
+         car_model: carModel,
+         mileage : carMileage,
+         fuelType : fuelType,
       }
       )
       await carDoc.save()
