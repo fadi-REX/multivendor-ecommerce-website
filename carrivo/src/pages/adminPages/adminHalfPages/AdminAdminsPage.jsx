@@ -40,8 +40,8 @@ function AdminAdminsPage() {
   const rows= arow
   const columns = [
     { field: "id", headerName: "ID", width: 150  },
-    { field: "col1", headerName: "Name", width: 300 },
-    { field: "col2", headerName: "Email", width: 400, flex: 1 },
+    { field: "col1", headerName: "Name", width: 200 },
+    { field: "col2", headerName: "Email", width: 400 },
   ];
 
   return (
