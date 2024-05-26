@@ -371,3 +371,25 @@ app.post('/api/deleteuser/:id', async (req,res) => {
 })
 
 
+
+app.put('/api/verifiecar/:id', async (req,res) => {
+  mongoose.connect(process.env.mongo_url);
+   const {id} = req.params;
+   const carDoc = await car.findById(id)
+   carDoc.set({
+        verified: true
+      }
+      )
+      await carDoc.save()
+      res.json('ok')
+})
+
+
+
+app.get('/api/allverifiedcars', async (req,res)=> {
+  mongoose.connect(process.env.mongo_url);
+  res.json(await car.find({verified: true}))
+})
+
+
+

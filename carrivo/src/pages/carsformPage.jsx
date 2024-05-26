@@ -201,7 +201,7 @@ export default function Carsformpage(){
             onChange={(ev) => setcarMileage(ev.target.value)}
           />
 
-          {preInput("Photos", "The more the better")}
+          {preInput("Photos", "The more the better - make sure the images are big enough to fit")}
 
           <div className="grid grid-cols-3 gap-2 md:grid-cols-4 lg:grid-cols-6 mt-2">
             {addedPhotos.length > 0 &&
@@ -505,7 +505,7 @@ export default function Carsformpage(){
           />
 
           <div>
-            {preInput("Price", "Price in tunisian million: 1M = 1 000 000 DT")}
+            {preInput("Price", "Price in tunisian million: 1M = 1 000 DT")}
             <input
               type="text"
               placeholder="Price"

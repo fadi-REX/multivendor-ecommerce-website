@@ -10,10 +10,9 @@ export default function ProductsPage(){
     
 
     useEffect(()=>{
-        axios.get('/allcars').then(response =>{
-           setcars(response.data ) 
-           
-        })
+        axios.get("/allverifiedcars").then((response) => {
+          setcars(response.data);
+        });
     },[])
 
 
