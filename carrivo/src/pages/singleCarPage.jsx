@@ -1,3 +1,5 @@
+/*
+
 import axios from 'axios'
 import Image from "../components/image"
 
@@ -119,3 +121,121 @@ export default function SingleCarPage(){
         </div>
     )
 }
+
+*/
+
+
+
+import axios from "axios";
+import Image from "../components/image";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
+export default function SingleCarPage() {
+  const { id } = useParams();
+  const [car, setCar] = useState(null);
+  const [showAllPhotos, setShowAllPhotos] = useState(false);
+
+  useEffect(() => {
+    if (!id) return;
+    axios.get(`/uniquecar/${id}`).then((response) => {
+      setCar(response.data);
+    });
+  }, [id]);
+
+  if (!car) return null;
+
+  const toggleShowAllPhotos = () => {
+    setShowAllPhotos((prevState) => !prevState);
+  };
+
+  return (
+    <div className="container mx-auto py-8 px-4">
+      <div className="bg-gray-100 rounded-lg shadow-lg p-6">
+        <h1 className="text-3xl font-bold mb-4">{car.title}</h1>
+        <p className="text-gray-600 mb-4">{car.location}</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {car.photos.slice(0, 3).map((photo, index) => (
+            <div
+              key={index}
+              onClick={toggleShowAllPhotos}
+              className="cursor-pointer relative overflow-hidden rounded-lg transition transform hover:scale-105"
+            >
+              <Image
+                src={photo}
+                alt={`Car Photo ${index}`}
+                className="object-cover w-full h-40 md:h-48 lg:h-56"
+              />
+              {index === 2 && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                  <p className="text-white text-lg">+{car.photos.length - 3}</p>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+        <button
+          onClick={toggleShowAllPhotos}
+          className="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg focus:outline-none focus:ring focus:ring-blue-400 transition-colors"
+        >
+          Show More Photos
+        </button>
+      </div>
+      {showAllPhotos && (
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {car.photos.map((photo, index) => (
+            <div
+              key={index}
+              className="overflow-hidden rounded-lg transition transform hover:scale-105"
+            >
+              <Image
+                src={photo}
+                alt={`Car Photo ${index}`}
+                className="object-cover w-full h-40 md:h-48 lg:h-56"
+              />
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div className="mt-8 bg-gray-100 rounded-lg shadow-lg p-6">
+        <h2 className="text-2xl font-bold mb-4">Specifications</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="border border-gray-200 rounded-lg p-4">
+            <h3 className="text-lg font-semibold mb-2">Car Model</h3>
+            <p className="text-gray-600">{car.car_model}</p>
+          </div>
+          <div className="border border-gray-200 rounded-lg p-4">
+            <h3 className="text-lg font-semibold mb-2">Mileage</h3>
+            <p className="text-gray-600">{car.mileage}</p>
+          </div>
+          <div className="border border-gray-200 rounded-lg p-4">
+            <h3 className="text-lg font-semibold mb-2">Fuel Type</h3>
+            <p className="text-gray-600">{car.fuelType}</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-8 bg-gray-100 rounded-lg shadow-lg p-6">
+        <h2 className="text-2xl font-bold mb-4">Description</h2>
+        <p className="text-gray-600">{car.description}</p>
+      </div>
+      <div className="mt-8 bg-gray-100 rounded-lg shadow-lg p-6">
+        <h2 className="text-2xl font-bold mb-4">Contact Info</h2>
+        <p className="text-gray-600">{car.contactInfo}</p>
+      </div>
+
+      <div className="mt-8 bg-gray-100 rounded-lg shadow-lg p-6">
+        <h2 className="text-2xl font-bold mb-4 text-center">Price</h2>
+        <div className="flex items-center justify-center">
+          <p className="text-3xl font-bold text-blue-500">{car.price} M</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+
+
+
