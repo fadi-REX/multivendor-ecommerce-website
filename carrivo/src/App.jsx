@@ -6,6 +6,7 @@ import LoginPage from './pages/loginPage'
 import Layout from './components/layout'
 import RegisterPage from './pages/registerPage'
 import axios from 'axios'
+import { Analytics } from "@vercel/analytics/react";
 
 import { UsercontextProvide } from './usercontext'
 import AccountPage from './pages/acountPage'
@@ -33,34 +34,37 @@ function App() {
   
   
   return (
-    <AdmincontextProvide>
-      <UsercontextProvide>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<IndexPage />} />
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/account" element={<AccountPage />} />
-            <Route path="/account/cars" element={<Mycars />} />
-            <Route path="/account/cars/new" element={<Carsformpage />} />
-            <Route path="/account/cars/:id" element={<Carsformpage />} />
-            <Route path="/car/:id" element={<SingleCarPage />} />
-            <Route path="/aboutus" element={<AboutUs />} />
-          </Route>
+    
+      <AdmincontextProvide>
+        <UsercontextProvide>
+           <Analytics/>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<IndexPage />} />
+              <Route path="/products" element={<ProductsPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/account" element={<AccountPage />} />
+              <Route path="/account/cars" element={<Mycars />} />
+              <Route path="/account/cars/new" element={<Carsformpage />} />
+              <Route path="/account/cars/:id" element={<Carsformpage />} />
+              <Route path="/car/:id" element={<SingleCarPage />} />
+              <Route path="/aboutus" element={<AboutUs />} />
+            </Route>
 
-          <Route path="/adminlogin" element={<AdminLoginPage />} />
+            <Route path="/adminlogin" element={<AdminLoginPage />} />
 
-          <Route path="/admin" element={<AdminLayout />}>
-            <Route index element={<AdminUsersPage />} />
-            <Route path="/admin/admins" element={<AdminAdminsPage />} />
-            <Route path="/admin/cars" element={<AdminCarsPage />} />
-            <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
-            <Route path="/admin/profile" element={<AdminProfilePage />} />
-          </Route>
-        </Routes>
-      </UsercontextProvide>
-    </AdmincontextProvide>
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<AdminUsersPage />} />
+              <Route path="/admin/admins" element={<AdminAdminsPage />} />
+              <Route path="/admin/cars" element={<AdminCarsPage />} />
+              <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+              <Route path="/admin/profile" element={<AdminProfilePage />} />
+            </Route>
+          </Routes>
+        </UsercontextProvide>
+      </AdmincontextProvide>
+    
   );
 }
 
