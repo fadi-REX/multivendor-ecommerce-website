@@ -119,9 +119,9 @@ function AdminCarsPage() {
     { field: "col5", headerName: "Listing Date ", width: 100 },
     { field: "col6", headerName: "location ", width: 100 },
     { field: "col7", headerName: "Car Model ", width: 100 },
-    { field: "col8", headerName: "Mileage ", width: 80 },
+    { field: "col8", headerName: "Mileage ", type:"number", width: 80 },
     { field: "col9", headerName: "Fuel Type ", width: 80 },
-    { field: "col10", headerName: "Price ", width: 80 },
+    { field: "col10", headerName: "Price ", type:"number", width: 80 },
 
     {
       field: "col11",

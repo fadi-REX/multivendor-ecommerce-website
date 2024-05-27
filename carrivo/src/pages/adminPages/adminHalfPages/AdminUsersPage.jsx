@@ -47,11 +47,11 @@ function AdminUsersPage() {
 
   const rows = arow;
   const columns = [
-    { field: "id", headerName: "ID", width: 100,  },
+    { field: "id", headerName: "ID", width: 100 },
     { field: "col1", headerName: "Name", width: 200 },
-    { field: "col2", headerName: "Email", width: 200, },
-    { field: "col3", headerName: "ID card ", width: 200, },
-    { field: "col4", headerName: "Phone number ", width: 200,  },
+    { field: "col2", headerName: "Email", width: 200 },
+    { field: "col3", headerName: "ID card ", type: "number", width: 200 },
+    { field: "col4", headerName: "Phone number ", type: "number", width: 200 },
     {
       field: "col5",
       headerName: "Active ",
