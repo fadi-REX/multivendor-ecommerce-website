@@ -101,8 +101,21 @@ export default function Carsformpage(){
      ev.preventDefault();
      if(id){
         // update
-        
-        const cardata = {id,title,location, addedPhotos,description,types,contactInfo,price,carModel,carMileage,fuelType}
+        const verified = false;
+        const cardata = {
+          id,
+          title,
+          location,
+          addedPhotos,
+          description,
+          types,
+          contactInfo,
+          price,
+          carModel,
+          carMileage,
+          fuelType,
+          verified,
+        };
       await axios.put('/addcar',cardata)
 
       setRedirect(true);

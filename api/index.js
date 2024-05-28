@@ -277,7 +277,7 @@ app.post('/api/addcar',(req,res) =>{
 app.put('/api/addcar', async (req,res) => {
  mongoose.connect(process.env.mongo_url);
  const {token} = req.cookies;
- const  {id,title,location, addedPhotos,description,types,contactInfo,price,carModel,carMileage,fuelType} = req.body;
+ const  {id,title,location, addedPhotos,description,types,contactInfo,price,carModel,carMileage,fuelType,verified } = req.body;
  
  jwt.verify(token,jwtSecret,{},async(err,userData) =>{
     const carDoc = await car.findById(id)
@@ -293,6 +293,7 @@ app.put('/api/addcar', async (req,res) => {
          car_model: carModel,
          mileage : carMileage,
          fuelType : fuelType,
+         verified  : verified ,
       }
       )
       await carDoc.save()
