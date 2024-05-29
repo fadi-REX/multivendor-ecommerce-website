@@ -6,7 +6,7 @@ function AdminDashboardPage() {
       <iframe
         title="Dashbord carrivo"
         height="700"
-        src="https://app.powerbi.com/view?r=eyJrIjoiZDRkNjYwMzItOWNlMy00MDc1LWJmNGQtMDk0NTc3NmE2MTk1IiwidCI6ImRiZDY2NjRkLTRlYjktNDZlYi05OWQ4LTVjNDNiYTE1M2M2MSIsImMiOjl9"
+        src="https://app.powerbi.com/view?r=eyJrIjoiNjI2NTEzMGYtZGNkMC00YTNkLTg2NGEtYjg3OGM3NzdjOWI3IiwidCI6ImRiZDY2NjRkLTRlYjktNDZlYi05OWQ4LTVjNDNiYTE1M2M2MSIsImMiOjl9"
         frameborder="0"
         allowFullScreen="true"
         className=" w-full"
