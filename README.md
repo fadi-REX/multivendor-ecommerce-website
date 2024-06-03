@@ -6,10 +6,12 @@ developed using MERN stack(MongoDB, Express, React, and Node. js) and power BI t
 
 ## Products Page:
 ![Screenshot (209)](https://github.com/fadi-REX/multivendor-ecommerce-website/assets/111784604/f4dc410f-aef4-4a00-8e78-57c30821b72a)
+
 ![Screenshot (211)](https://github.com/fadi-REX/multivendor-ecommerce-website/assets/111784604/5193911c-0db2-4ee0-b56a-c3872a6ffdef)
 
 ## Login and Register:
 ![Screenshot (212)](https://github.com/fadi-REX/multivendor-ecommerce-website/assets/111784604/3a90bc61-c0ae-49ed-a5e2-e8b0320ac39a)
+
 ![Screenshot (213)](https://github.com/fadi-REX/multivendor-ecommerce-website/assets/111784604/347f3c0c-d7cd-4df1-8be6-4357ac468b92)
 
 ## Account Page:
@@ -20,5 +22,7 @@ developed using MERN stack(MongoDB, Express, React, and Node. js) and power BI t
 
 ## Admin Panel:
 ![Screenshot (216)](https://github.com/fadi-REX/multivendor-ecommerce-website/assets/111784604/532cc909-3f29-4c02-877c-49b4cbd43924)
+
 ![Screenshot (217)](https://github.com/fadi-REX/multivendor-ecommerce-website/assets/111784604/6765b4f8-7d93-41a4-847e-8ef35282d490)
+
 ![Screenshot (218)](https://github.com/fadi-REX/multivendor-ecommerce-website/assets/111784604/4795c104-6fe1-4fd2-b87c-489dce40cf8b)
