@@ -1,6 +1,11 @@
 ﻿# multivendor ecommerce website : Carrivo
 developed using MERN stack(MongoDB, Express, React, and Node. js) and power BI to analyse our Data.
+
 ## Link: https://carrivo.vercel.app/
+
+The user can view products, register, login, and post cars to sell. 
+The admin can view all users and all products, verify the products, delete a product or a user, and view the analysis made by PowerBI. 
+
 ## Main Page:
 ![Screenshot (220)](https://github.com/fadi-REX/multivendor-ecommerce-website/assets/111784604/6755b016-0f30-4e24-b322-393c9a1afca4)
 
